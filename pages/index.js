@@ -117,7 +117,6 @@ export default function Home({ allPostsData }) {
                                     <div className="post-preview" key={id}>
                                         <Link href={`/posts/${id}`}>
                                             <a>
-                                                {/* {console.log({ card })} */}
                                                 <img
                                                     src={card}
                                                     alt={title} className="border" />

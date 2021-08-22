@@ -18,6 +18,7 @@ export default function About() {
                         <div className="col-md-10 col-lg-8 col-xl-7">
                             <div className="page-heading">
                                 <h1>About Me</h1>
+                                <p className="lead">Codegeek, is a free website to learning software engineering</p>
                                 <span className="subheading">This is what I do.</span>
                             </div>
                         </div>

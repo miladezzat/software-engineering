@@ -12,11 +12,11 @@ class MyDocument extends Document {
                 <Head>
                     <meta charSet="utf-8" />
                     <link rel="icon" href="/favicon.ico" />
-                    <meta name="description" content="Codegeek, A Software Engineer with industry experience building web services. Specializing in Full Stack development with Node.js, Reactjs." />
+                    <meta name="description" content="Codegeek, is a free website to learning software engineering" />
                     <meta name="keywords" content="HTML, CSS, JavaScript, node.js, node, mongo, mongodb, developer, Software Engineer" />
                     <meta name="author" content="Codegeek" />
-                    <meta property="og:description" content="Codegeek, A Software Engineer with industry experience building web services. Specializing in Full Stack development with Node.js, Reactjs." />
-                    <meta name="twitter:description" content="Codegeek, A Software Engineer with industry experience building web services. Specializing in Full Stack development with Node.js, Reactjs." />
+                    <meta property="og:description" content="Codegeek, is a free website to learning software engineering" />
+                    <meta name="twitter:description" content="Codegeek, is a free website to learning software engineering" />
                     <meta property="og:image" content="/images/profile.png" />
                     <meta name="og:title" content={siteTitle} />
                     <meta name="twitter:card" content="/images/profile.png" />
@@ -26,11 +26,7 @@ class MyDocument extends Document {
                     <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossOrigin="anonymous"></script>
 
                     {/* for google search console */}
-                    <meta name="google-site-verification" content="_-p2XdKwtGd6MPXJye2VTAIfwoQtDxLoelu7ojSoNqM" />
 
-                    {/* google ads */}
-
-                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7839879913941805" crossOrigin="anonymous"></script>
 
                 </Head>
                 <body>
