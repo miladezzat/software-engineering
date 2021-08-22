@@ -29,8 +29,6 @@ export default function About() {
                 <div className="container px-4 px-lg-5">
                     <div className="row gx-4 gx-lg-5 justify-content-center">
                         <div className="col-md-10 col-lg-8 col-xl-7">
-                            <p>Hello, I`m Milad. I`m Software Engineer and Photographer. You can connect me on <a href='https://www.linkedin.com/in/miladezzat' target='_blank' rel="noopener noreferrer"> LinkedIn </a>, and you can find me on <a href="https://milad-ezzat.netlify.app/">website</a>. I share what I learned about Software Engineering, Productivity, and building new habits on my <a href='https://www.youtube.com/channel/UCewDJdWsup1lIgiV8v7dNnQ' target='_blank' rel="noopener noreferrer"> Youtube channel </a> and blog. Feel free to join my newsletter to follow along.</p>
-                            <p>This website for some notes and simple things i learned during my life work, I loved to shared it with you.</p>
                         </div>
                     </div>
                 </div>

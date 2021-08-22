@@ -76,17 +76,17 @@ export default function Home({ allPostsData }) {
     return (
         <Layout>
             <Head>
-                <title>Milad E. Fahmy</title>
+                <title>Codegeek</title>
             </Head>
             <NavBar />
             {/* <!-- Page Header--> */}
-            <header className="masthead d-none d-md-flex" style={{ backgroundImage: "url('https://images-process.herokuapp.com/url?imageUrl=https://milad-ezzat.vercel.app/images/cover.png&imageFormat=webp')" }}>
+            <header className="masthead d-none d-md-flex" style={{ backgroundImage: "url('https://codegeek.vercel.app/url?imageUrl=https://software-engineering.vercel.app/images/cover.png&imageFormat=webp')" }}>
                 <div className="container position-relative px-4 px-lg-5">
                     <div className="row gx-4 gx-lg-5 justify-content-center">
                         <div className="col-md-10 col-lg-8 col-xl-7">
                             <div className="site-heading">
-                                <h1>Milad Blog</h1>
-                                <span className="subheading">Milad Ezzat is a software engineer</span>
+                                <h1>Codegeek</h1>
+                                <span className="subheading">Codegeek is a free website to learning software engineering</span>
                             </div>
                             <div className="text-center mt-5">
                                 <input id="search" type="text" placeholder="search" className="p-2 mr-2" />
@@ -126,8 +126,6 @@ export default function Home({ allPostsData }) {
                                             </a>
                                         </Link>
                                         <p className="post-meta">
-                                            Posted by{' '}
-                                            <a href='https://milad-ezzat.netlify.app/'>{author}</a>
                                             <Date dateString={created} readingTime={readingTime} />
                                             {tags?.map(tag => (
                                                 <span key={`${tag}-${id}`}><span className={`${utilStyles.tag} text-white`} key={tag}>#{tag} </span>&nbsp;</span>

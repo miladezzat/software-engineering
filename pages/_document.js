@@ -2,7 +2,7 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import Script from 'next/script';
 
-export const siteTitle = 'Milad E. Fahmy'
+export const siteTitle = 'Codegeek'
 
 
 class MyDocument extends Document {
@@ -12,11 +12,11 @@ class MyDocument extends Document {
                 <Head>
                     <meta charSet="utf-8" />
                     <link rel="icon" href="/favicon.ico" />
-                    <meta name="description" content="Milad E. Fahmy, A Software Engineer with industry experience building web services. Specializing in Full Stack development with Node.js, Reactjs." />
+                    <meta name="description" content="Codegeek, A Software Engineer with industry experience building web services. Specializing in Full Stack development with Node.js, Reactjs." />
                     <meta name="keywords" content="HTML, CSS, JavaScript, node.js, node, mongo, mongodb, developer, Software Engineer" />
-                    <meta name="author" content="Milad E. Fahmy" />
-                    <meta property="og:description" content="Milad E. Fahmy, A Software Engineer with industry experience building web services. Specializing in Full Stack development with Node.js, Reactjs." />
-                    <meta name="twitter:description" content="Milad E. Fahmy, A Software Engineer with industry experience building web services. Specializing in Full Stack development with Node.js, Reactjs." />
+                    <meta name="author" content="Codegeek" />
+                    <meta property="og:description" content="Codegeek, A Software Engineer with industry experience building web services. Specializing in Full Stack development with Node.js, Reactjs." />
+                    <meta name="twitter:description" content="Codegeek, A Software Engineer with industry experience building web services. Specializing in Full Stack development with Node.js, Reactjs." />
                     <meta property="og:image" content="/images/profile.png" />
                     <meta name="og:title" content={siteTitle} />
                     <meta name="twitter:card" content="/images/profile.png" />

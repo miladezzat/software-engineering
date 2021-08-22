@@ -14,7 +14,7 @@ export default function NavBar() {
             <nav className="navbar navbar-expand-lg navbar-light d-none d-md-flex" id="mainNav">
                 <div className="container px-4 px-lg-5">
                     <Link href="/">
-                        <a className="navbar-brand"> <Image src="/android-chrome-192x192.png" alt="milad" width="30" height="30" /> Milad E. Fahmy</a>
+                        <a className="navbar-brand"> <Image src="/favicon-32x32.png" alt="Codegeek" width="30" height="30" /> Codegeek</a>
                     </Link>
                     <button className="navbar-toggler" type="button"
                         data-toggle="collapse"
@@ -44,11 +44,6 @@ export default function NavBar() {
                             <li className="nav-item">
                                 <Link href="/contact">
                                     <a className="nav-link px-lg-3 py-3 py-lg-4">Contact</a>
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link href="https://miladezzat.github.io">
-                                    <a className="nav-link px-lg-3 py-3 py-lg-4">Http Status Codes</a>
                                 </Link>
                             </li>
                         </ul>

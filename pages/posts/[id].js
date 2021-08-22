@@ -30,11 +30,11 @@ export default function Post({ postData }) {
             <Head>
                 <title>{postData.title}</title>
                 <meta name="description" content={postData.description?.slice(0, 60)} />
-                <link rel="canonical" href={`https://milad-ezzat.vercel.app/${postData.id}`} />
+                <link rel="canonical" href={`https://codegeek.vercel.app/${postData.id}`} />
             </Head>
             <NavBar />
             {/* <!-- Page Header--> */}
-            <header className="masthead" style={{ backgroundImage: 'url(https://images-process.herokuapp.com/url?imageUrl=https://milad-ezzat.vercel.app/images/programming.png&imageFormat=webp)' }}>
+            <header className="masthead" style={{ backgroundImage: 'url(https://images-process.herokuapp.com/url?imageUrl=https://codegeek.vercel.app/images/programming.png&imageFormat=webp)' }}>
                 <div className="container position-relative px-4 px-lg-5">
                     <div className="row gx-4 gx-lg-5 justify-content-center">
                         <div className="col-md-10 col-lg-8 col-xl-7">
