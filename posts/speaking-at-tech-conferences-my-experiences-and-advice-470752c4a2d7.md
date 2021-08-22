@@ -1,0 +1,41 @@
+---
+card: "https://cdn-media-1.freecodecamp.org/images/1*uZrr3qK71LK_cWsDywxYTw.jpeg"
+tags: [Technology]
+description: "For several years now, I‘ve been watching tons of online conf"
+author: "Milad E. Fahmy"
+title: "I gave 16 tech talks at coding events and conferences. Here’s what I learned."
+created: "2021-08-16T11:48:19+02:00"
+modified: "2021-08-16T11:48:19+02:00"
+---
+<div class="site-wrapper">
+<main id="site-main" class="site-main outer">
+<div class="inner">
+<article class="post-full post tag-technology tag-programming tag-conference tag-public-speaking tag-self-improvement ">
+<header class="post-full-header">
+<h1 class="post-full-title">I gave 16 tech talks at coding events and conferences. Here’s what I learned.</h1>
+</header>
+<figure class="post-full-image">
+<picture>
+<source media="(max-width: 700px)" sizes="1px" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7 1w">
+<source media="(min-width: 701px)" sizes="(max-width: 800px) 400px,
+(max-width: 1170px) 700px,
+1400px" srcset="https://cdn-media-1.freecodecamp.org/images/1*uZrr3qK71LK_cWsDywxYTw.jpeg 300w,
+https://cdn-media-1.freecodecamp.org/images/1*uZrr3qK71LK_cWsDywxYTw.jpeg 600w,
+https://cdn-media-1.freecodecamp.org/images/1*uZrr3qK71LK_cWsDywxYTw.jpeg 1000w,
+https://cdn-media-1.freecodecamp.org/images/1*uZrr3qK71LK_cWsDywxYTw.jpeg 2000w">
+<img onerror="this.style.display='none'" src="https://cdn-media-1.freecodecamp.org/images/1*uZrr3qK71LK_cWsDywxYTw.jpeg" alt="I gave 16 tech talks at coding events and conferences. Here’s what I learned.">
+</picture>
+</figure>
+<section class="post-full-content">
+<div class="post-content">
+<p>For several years now, I‘ve been watching tons of online conference talks. I’m always impressed by the willingness of people in the tech community to openly share knowledge with each other. So many people go out of their way to create free online learning materials or help out when you are stuck. These people really inspired me to try to teach what I knew and help others as well.</p><p>I really love teaching. It makes me feel fulfilled when I help someone and it also helps me learn. That was why I reached out to the local community over two years ago to help get a freeCodeCamp group started.</p><p>We started off just meeting in coffee shops around town to discuss code and possibly work on projects together. After six months or so, the group started to grow and gain traction around town and we decided to start having more formal meetings with workshops and speakers giving talks. Since we needed speakers to give these talks, I thought, “Why can’t I give talks too?”</p><p>My first talk I gave was to the freeCodeCampIndy group about “Making a Developer Blog.” Over a year later, with fifteen more talks and workshops under my belt, I’m so happy I took that first step to start teaching and speaking.</p><h3 id="first-a-list-of-my-talks-and-workshops">First, a list of my talks and workshops</h3><p>End of 2016:</p><ol><li>freeCodeCampIndy (local) — Making a Developer Blog</li><li>Node Indy (local) — Serverless Applications with Node.js on AWS Lambda</li><li>Indy Software Artisans (local) — Why you should use React Native for your Next Mobile App</li></ol><p>2017:</p><ol><li>IndyJS (local) — Programming Paradigms</li><li>Indy.Code (conference)— 2 talks, React Native and Programming Paradigms in JS</li><li>freeCodeCampIndy (local)— Build tools in JavaScript</li><li>Nebraska Code (conference) — 2 talks, React Native and Programming Paradigms in JS</li><li>Detroit Code (conference) — 2 talks, React Native and Programming Paradigms in JS</li><li>Indy AWS (local)— Serverless Applications on AWS</li><li>Prarie Code (conference) — 2 talks, React Native and Programming Paradigms in JS and an 8-hour workshop on React/Redux</li><li>freeCodeCampIndy (local)— React Workshop (2-hours)</li><li>freeCodeCampIndy (local)— Intro to JavaScript Workshop</li></ol><p>2018:</p><ol><li>NDC London (conference) — React Native</li></ol><h3 id="struggles-and-things-i-ve-learned">Struggles and Things I’ve Learned</h3><p>Speaking has taught me a lot. I’m much more confident now. I communicate better. I feel fulfilled and more professional. And I’m better at reading people.</p><p>Conference speaking has also helped me learn to plan ahead with my schedule and partition my time better. I’m still not perfect by any means, but I am way better at these things than I was when I started.</p><p>The hardest thing for me has always been speaking in front of other people — even in a small group setting. I get severe social anxiety sometimes, and I used to have panic attacks sometimes just before I had to give a talk or a workshop. I did think about quitting quite a few times especially while I was alone at conferences in my hotel room.</p><p>I tried Toastmasters for a (very short) while, but it was a little bit intimidating for me. Everyone there seemed really extroverted and I didn’t quite fit in.</p><p>I’ve found that the best ways for me to practice are to grab a friend or two who will listen to me — even if they aren’t technical. Or to record myself giving the talk a few weeks ahead of time.</p><p>Basically, I just need to go through the whole presentation out loud a few times to see where it needs work. I’ve found that knowing what I’m going to say is way different than actually saying it.</p><p>Fortunately, I love to push myself and prove to myself that I can do things that I’m not naturally good at. It’s been quite a while since my last panic attack and I feel awesome!</p><h3 id="some-tips-for-becoming-a-conference-speaker">Some Tips for Becoming a Conference Speaker</h3><h4 id="start-at-local-meetups-">Start at local meetups.</h4><p>The first talk I gave was on creating developer blogs at the local freeCodeCamp group. It was a great segue into speaking because there was no live coding or servers running or things that could go wrong. Plus it wasn’t overly technical. It just allowed me to get more comfortable speaking in public.</p><h4 id="meet-lots-of-people-">Meet lots of people.</h4><p>I got invited to my first conference because I met someone locally who happened to be running a conference. When I spoke at that conference, I happened to be invited to apply to several more conferences. I wasn’t really amazing at anything, I just met the right people at the right time.</p><h4 id="practice-in-front-of-real-people-">Practice in front of real people.</h4><p>Make sure you set a date about two-weeks before your talk to practice in front of someone. You could alternatively record yourself and send it to someone to watch. (This is especially important if you are a procrastinator.)</p><p>This will make sure you don’t fall into the all-too-common habit of speakers to create their entire presentation only days or hours before their talk. More experienced speakers can cover up for this somewhat, but especially if you are new, it could turn out to be a disaster. Plus it adds unnecessary stress.</p><p>Don’t put it off — schedule time every week to work on it no matter what.</p><h4 id="always-ask-for-feedback-">Always ask for feedback.</h4><p>You can easily make a survey for free on <a href="https://www.google.com/forms/about/" rel="noopener">Google Forms</a> to get valuable tips, comments, and encouragement. This can be automatically converted to charts and tables for future referencing.</p><p>If you are speaking at a conference, there might already be some kind of survey set up for every speaker and talk. Just make sure you remind everyone at the end of your talk to go and fill it out.</p><p>If it’s a smaller audience, then you might be able to just ask people in person or online afterwards.</p><h3 id="my-future-speaking-plans">My Future Speaking Plans</h3><p>I will be traveling to London in January. I’ve applied at two more conferences, so far and I’m planning to give some Vue.js and AWS talks next year (and maybe a few more I’ve been kicking around).</p><p>I’m kind of shy but I love meeting people, so if you see me at a conference please say ‘hello’ :)</p>
+</div>
+<hr>
+<hr>
+</section>
+</article>
+</div>
+</main>
+</div>
+<!-- Google Tag Manager (noscript) -->
+<!-- End Google Tag Manager (noscript) -->

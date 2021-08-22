@@ -1,0 +1,84 @@
+---
+card: "https://cdn-media-1.freecodecamp.org/images/1*nY3XI__S6O5PXrjdLIsJyQ.png"
+tags: [Software Architecture]
+description: "by David Rieger"
+author: "Milad E. Fahmy"
+title: "Learn Go reflections and generic designs with a practical example"
+created: "2021-08-16T11:46:12+02:00"
+modified: "2021-08-16T11:46:12+02:00"
+---
+<div class="site-wrapper">
+<main id="site-main" class="site-main outer">
+<div class="inner">
+<article class="post-full post tag-software-architecture tag-programming tag-web-development tag-technology tag-tech ">
+<header class="post-full-header">
+<h1 class="post-full-title">Learn Go reflections and generic designs with a practical example</h1>
+</header>
+<figure class="post-full-image">
+<picture>
+<source media="(max-width: 700px)" sizes="1px" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7 1w">
+<source media="(min-width: 701px)" sizes="(max-width: 800px) 400px,
+(max-width: 1170px) 700px,
+1400px" srcset="https://cdn-media-1.freecodecamp.org/images/1*nY3XI__S6O5PXrjdLIsJyQ.png 300w,
+https://cdn-media-1.freecodecamp.org/images/1*nY3XI__S6O5PXrjdLIsJyQ.png 600w,
+https://cdn-media-1.freecodecamp.org/images/1*nY3XI__S6O5PXrjdLIsJyQ.png 1000w,
+https://cdn-media-1.freecodecamp.org/images/1*nY3XI__S6O5PXrjdLIsJyQ.png 2000w">
+<img onerror="this.style.display='none'" src="https://cdn-media-1.freecodecamp.org/images/1*nY3XI__S6O5PXrjdLIsJyQ.png" alt="Learn Go reflections and generic designs with a practical example">
+</picture>
+</figure>
+<section class="post-full-content">
+<div class="post-content medium-migrated-article">
+func main() {
+rawData := Parse("books_db.flatfile")
+// Run algorithms of our choice against the data
+bpDChart := amountOfBooksPerDecade(rawData)
+bpAList := booksPerAuthor(rawData)
+createReport(bpDChart, bpAList)
+books []Book
+}
+func (l *Library) GetMostSoldBooks(startYear, endYear int) SoldStat {
+...
+}</code></pre><p>Here we define a type <code>Library</code> which is based on type <code>struct</code>. We now take the above defined function <code>GetMostSoldBooks</code>, pull the library parameter out, and turn it into a receiver type which turns the function into a method of the <code>*Library</code> type. On the other hand, <code>*Library</code> describes a pointer to <code>Library</code>.</p><p>This is practical, not only because Go offers a way to find methods of types by their names, but also because it allows us to tie all statistical algorithms to the <code>*Library</code> type. We will need an instance of this anyway in all these algorithms, as it contains all the data about the library we want to process in the algorithms.</p><p>Instead of passing the library as just another parameter to each function, we can use the library as a receiver and — in return — get stronger coupling. In this case, it makes our code cleaner. Each new statistical algorithm that is to be added to the application now must be a method of the <code>*Library</code> type.</p><p>Now let’s take a look at how we can actually use the reflect package to retrieve the above method if all we’ve got is its name.</p><pre><code class="language-go">import "reflect"
+m := reflect.ValueOf(&amp;Library{}).MethodByName("GetMostSoldBooks")</code></pre><p>First we need to take an instance of the receiver type (receiver type being <code>*Library</code>) and turn it into a <code>reflect.Value</code> by passing it to <code>reflect.ValueOf()</code>. On the returned value, we can then call <code>MethodByName()</code> with the name of the method we want to retrieve.</p><p>What we get in return is a callable function wrapped in <code>reflect.Value</code> which will accept exactly the parameters as we defined them in the method definition. Note that upon the call of this function, the instance of <code>*Library</code> we passed to <code>reflect.ValueOf()</code> will be used as the receiver type. This means <a href="https://golang.org/pkg/reflect/#Value.MethodByName" rel="noopener">it is important</a> that you already passed the correct instance to the <code>reflect.ValueOf()</code>function.</p><p>To make the returned value <code>m</code> in the above example actually callable, we will need to cast it from <code>reflect.Value</code> to an actual function type with the correct signatures. This will look as follows:</p><pre><code class="language-go">mCallable := m.Interface().(func(int, int) SoldStat)</code></pre><p>Note how we need to first turn it into an interface type and only then cast it to the function type.</p><h3 id="making-methods-generic">Making Methods Generic</h3><p>Ok, great. We now have a callable method which we retrieved by passing the function’s name to our application and letting reflections do the rest. But when it comes to calling the actual function, we’ve still got a bit of a problem.</p><p>We need to know the function’s signature in order to to be able to cast the <code>reflect.Value</code> returned by <code>MethodByName()</code> into a callable function. Since we have a lot of different analytical algorithms, chances are that the parameters they accept differ (we definitely don’t want to force a specific function signature onto developers who want to extend the application). This means that the method signatures vary and that we can’t just cast all values returned by the reflection into the exact same function type.</p><p>What we have to do is provide a generic function signature. We can do this by creating a wrapper method.</p><pre><code class="language-go">func (l *Library) GetMostSoldBooksWrap(p GenericParams) Reportable {
+return l.GetMostSoldBooks(p.(*MostSoldBooksParams))
+}</code></pre><p>Here we’ve got a wrapper method <code>GetMostSoldBooksWrap</code> for the concrete method <code>GetMostSoldBooks</code>. Like the concrete method, the wrapper is a method of type <code>*Library</code>. The difference is its signature. It accepts a generic prameter <code>GenericParams</code> and returns an instance of type <code>Reportable</code>. In its body, it invokes the concrete analytical method that processes the library data. Also new is the type <code>MostSoldBooksParams</code> which wraps the parameters for the concrete method.</p><p>Now, let’s see where those new types come from.</p><p>In order to be able to pass the <code>GenericParams</code> parameter to the concrete <code>GetMostSoldBooks()</code> method, the concrete method also needs to only accept one single parameter which we can cast the generic parameter to. We do this by changing the method signature of the concrete function to accept a <code>*MostSoldBooksParams</code> parameter.</p><p>This may first sound as though we are forcing a method signature upon the analytical algorithms after all, therefore contradicting the statement made above. And in some ways that is true. But in some way it isn’t, because <code>MostSoldBooksParams</code> is of type struct and can therefore contain multiple fields.</p><pre><code class="language-go">type MostSoldBooksParams struct {
+startYear int
+endYear int
+}
+func (l *Library) GetMostSoldBooks(p *MostSoldBooksParams) SoldStat {
+...
+}</code></pre><p>As you can see, the parameter for the analytical method still incorporates both integer parameters <code>startYear</code> and <code>endYear</code> we had defined in the method signature originally. The method also still returns the concrete type <code>SoldStat</code>.</p><p>Let’s go back to the wrapper method.</p><p>As we now need to map the strings from the configuration file to the wrapper methods rather than the concrete methods, we need a wrapper for each analytical algorithm. It needs to be named so that it makes sense to add this name to the config file.</p><p>In this solution here, we name wrappers with <code>&lt;concrete method name&amp;g</code>t;Wrap. In the config file, we can then just provide the same concrete method’s name and the reflect logic will a<em>ppend </em>“Wrap” to the string before looking for the method.</p><p>The signatures, however, are the exact same for every wrapper function (otherwise they would be futile).</p><pre><code class="language-go">type GenericParams interface {
+IsValid() (bool, string)
+}</code></pre><p>The <code>GenericParam</code> parameter type is an interface. We declare one method <code>IsValid() (bool, string)</code> for this interface, meaning that every struct which defines this method automatically implements the <code>GenericParams</code> <a href="https://gobyexample.com/interfaces" rel="noopener">interface</a>.</p><p>This is relevant because in our wrapper method, we cast the GenericParams interface to the concrete struct type <code>MostSoldBooksParams</code> . This only works if <code>MostSoldBooksParams</code> implements the <code>GenericParams</code> interface.<br>We therefore now provide a <code>IsValid()</code> method to our concrete parameter type.</p><pre><code class="language-go">func (p *MostSoldBooksParams) IsValid() (bool, string) {
+…
+return true, “”
+}</code></pre><p>The <code>IsValid()</code> function itself can be used to check the validity of the parameters passed to the concrete analytical method. We can call it at the very beginning of the method.</p><pre><code class="language-go">func (l *Library) GetMostSoldBooks(p *MostSoldBooksParams) SoldStat
+{
+if isValid, reason := p.IsValid(); !isValid {
+log.Fatalf(“\nParams invalid:: %s”, reason)
+}
+...
+}</code></pre><p>Lastly, we have the <code>Reportable</code> type, which is our generic return value.</p><pre><code class="language-go">type Reportable interface {
+Report() HTMLStatisticReport
+}</code></pre><p>Like the generic parameter type, <code>Reportable</code> is an interface. It declares one method <code>Report()</code> which will return a statistical report in HTML format.</p><p>Since our generic wrapper method directly returns the output of the concrete method, the concrete method’s return type must be of the generic wrapper method’s return type. This means that our <code>SoldStat</code> type, which is the type returned by the concrete analytical method, must implement the <code>Reportabe</code> interface.</p><p>We do this again by writing an implementation of the method declared by the interface.</p><pre><code class="language-go">func (p SoldStat) Report() HTMLStatisticReport {
+...create report...
+}</code></pre><p>We will need to implement these methods for all different return types of all statistics algorithms so that the types can be returned by the generic wrappers. While this may appear to introduce a lot of overhead effort, converting the statistical output of each algorithm into a human-readable report is something that needs to be done either way.</p><p>Now that we have our generic design, we can go back to the reflections.</p><pre><code class="language-go">m := reflect.ValueOf(library).MethodByName("GetMostSoldBooksWrap")
+mCallable = m.Interface().(func(GenericParams) Reportable)</code></pre><p>These two lines of reflection can now be used to retrieve any analytical method wrapper by its name, whereby <code>mCallable</code> will be the callable wrapper method.</p><h3 id="passing-parameters">Passing Parameters</h3><p>What’s missing are the method parameters. These will need to be parsed from the config file just like the method name and then passed to the wrapper method we retrieved through the reflection. This is where things become a bit convoluted.</p><pre><code>statistics:
+— statsMethodName: GetMostSoldBooks
+startYear: 1984
+endYear: 2018</code></pre><p>The above shows an example configuration file in YAML format. We have a root element <code>statistics</code> which maps to a list. Each element in the list is an analytical algorithm we want to run and include its output in the report. The elements consist of a key <code>statsMethodName</code>, with the name of the analytical method as the value, and one key per parameter with their corresponding values. Note that the names of the parameters must match the names of the fields in the parameter struct declared for the associated method. In this case here, the parameter struct is the one we declared before, namely <code>MostSoldBooksParams</code>, with fields <code>startYear</code> and <code>endYear</code>, both of which are of type integer.</p><p>What we need to add to our reflection now is the mapping of the strings (and other value types) defining the parameters, from the configuration file to the method parameter struct’s fields.</p><p>Since the concrete method parameter struct is in the concrete method’s signature but not in the signature of the wrapper method, we will need to retrieve the concrete method through the reflection logic in addition to the wrapper method.</p><pre><code class="language-go">methodName := "GetMostSoldBooks" // taken from configuration file
+conreteMethod := reflect.ValueOf(library).MethodByName(methodName)
+wrapperName := fmt.Sprintf("%sWrap", methodName)
+wrapperMethod := reflect.ValueOf(library).MethodByName(wrapperName)</code></pre><p>Next we need to access the parameter type passed to the <a href="https://golang.org/pkg/reflect/#Type" rel="noopener">concrete method</a>.</p><pre><code class="language-go">concreteMethodParamsType := conreteMethod.Type().In(0).Elem()</code></pre><p><code>concreteMethodParamsType</code> will now hold the type of the method parameter struct. For the case of the <code>GetMostSoldBooks</code> this is <code>MostSoldBooksParams</code>.</p><p>In order to be able to retrieve the struct fields (which represent the parameters needed by the analytical algorithm) by their names (which are given in the configuration file), we need to create an instance of the method parameter struct type. We need both a pointer to the instance as well as the instance itself (as will be seen later).</p><pre><code class="language-go">concreteMethodParamsPtr := reflect.New(concreteMethodParamsType)
+concreteMethodParams := concreteMethodParamsPtr.Elem()</code></pre><p>At this stage, you can iterate over the keys of the stats element from the configuration file and map the parameter types one-by-one to the fields in the parameter (that is, retrieving the fields of the method parameter struct according to their names). To retrieve a field of a struct <a href="https://golang.org/pkg/reflect/#Value.FieldByName" rel="noopener">by its name</a>, we can use <code>reflect.FieldByName()</code>.</p><pre><code class="language-go">parameterField := concreteMethodParams.FieldByName(configParam)</code></pre><p>Once we have the parameter fields retrieved, we can map the value given for this parameter in the configuration file to the actual field.</p><pre><code class="language-go">if configValueInt, isInt := configValue.(int); isInt {
+parameterField.SetInt(int64(configValueInt)
+)</code></pre><p>The above is for the case of integer values, but we could do the same for each value type we expect (in a trial and error fashion) for each parameter given in the configuration file. Setting the value on the parameter field here will also directly affect the method parameters struct, so we don’t need to explicitly alter <code>concreteMethodParams</code> in order to store the parameter value retrieved from the configuration file.</p><p>Lastly, just as we did with the wrapper method, we will cast the <code>concreteMethodParams</code> struct to a <code>GenericParams</code> type. Note that we need to use the pointer type there.</p><pre><code class="language-go">wrapperParams := concreteMethodParamsPtr.Interface().(GenericParams)</code></pre><h3 id="putting-it-all-together">Putting it all together</h3><p>Once we have our wrapper method and our generic method parameter, we can call the wrapper as follows.</p><pre><code class="language-go">wrapperMethod(wrapperParams)</code></pre><p>As you can see, that’s just a normal function call. It does exactly the same as calling the wrapper would do without going through the reflection process.</p><p>Finally, you will just need a function that calls <code>Report()</code> on all of the return values from the invoked analytical method’s wrapper functions and puts the reports of each statistic into one coherent report file.</p><p>Now the question that you should ask is: <strong>Is this good code?</strong></p><p>My answer:<strong> I don’t know.</strong></p><p>What I <em>can</em> tell you is that it is an option worth exploring. Especially if you end up in a situation where you are in the need of a software design with similar requirements as the ones in this example — even if it’s just for the purpose of learning about reflections.</p><p>If you want to see the full code of an application using this design, check out: <a href="https://github.com/Demonware/harbor-analytics" rel="noopener">https://github.com/Demonware/harbor-analytics</a></p>
+</div>
+<hr>
+</section>
+</article>
+</div>
+</main>
+</div>
+<!-- Google Tag Manager (noscript) -->
+<!-- End Google Tag Manager (noscript) -->
