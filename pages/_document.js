@@ -26,6 +26,7 @@ class MyDocument extends Document {
                     <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossOrigin="anonymous"></script>
 
                     {/* for google search console */}
+                    <meta name="google-site-verification" content="_-p2XdKwtGd6MPXJye2VTAIfwoQtDxLoelu7ojSoNqM" />
 
 
                 </Head>
